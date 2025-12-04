@@ -97,9 +97,9 @@ def get_voice_names(repo_id):
     return [os.path.splitext(file.replace("voices/", ""))[0] for file in list_repo_files(repo_id) if file.startswith("voices/")]
 
 def create_audio_dir():
-    """Creates the 'kokoro_audio' directory in the root folder if it doesn't exist."""
+    """Creates the 'nexus_audio' directory in the root folder if it doesn't exist."""
     root_dir = os.getcwd()  # Use current working directory instead of __file__
-    audio_dir = os.path.join(root_dir, "kokoro_audio")
+    audio_dir = os.path.join(root_dir, "nexus_audio")
 
     if not os.path.exists(audio_dir):
         os.makedirs(audio_dir)
@@ -509,7 +509,7 @@ def save_current_data():
         shutil.rmtree("./last")
     os.makedirs("./last",exist_ok=True)
 
-def KOKORO_TTS_API(text, Language="American English",voice="af_bella", speed=1,translate_text=False,remove_silence=False,keep_silence_up_to=0.05):
+def NEXUS_TTS_API(text, Language="American English",voice="af_bella", speed=1,translate_text=False,remove_silence=False,keep_silence_up_to=0.05):
     if translate_text:
         text=bulk_translate(text, Language, chunk_size=500)
     save_path,timestamps=generate_and_save_audio(text=text, Language=Language,voice=voice, speed=speed,remove_silence=remove_silence,keep_silence_up_to=keep_silence_up_to)
@@ -551,8 +551,8 @@ def ui():
     ]
 
     with gr.Blocks() as demo:
-        # gr.Markdown("<center><h1 style='font-size: 40px;'>KOKORO TTS</h1></center>")  # Larger title with CSS
-        # gr.Markdown("[Install on Your Local System](https://github.com/NeuralFalconYT/kokoro_v1)")
+        # gr.Markdown("<center><h1 style='font-size: 40px;'>NEXUS TTS</h1></center>")  # Larger title with CSS
+        # gr.Markdown("[Install on Your Local System](https://github.com/NeuralFalconYT/nexus_tts)")
 
 
         with gr.Row():
@@ -586,8 +586,8 @@ def ui():
                     srt_file = gr.File(label='📜 Download Sentence-Level SRT')
                     sentence_duration_file = gr.File(label='⏳ Download Sentence Timestamp JSON')
 
-        text.submit(KOKORO_TTS_API, inputs=[text, language_name, voice_name, speed,translate_text, remove_silence], outputs=[audio, audio_file,word_level_srt_file,srt_file,sentence_duration_file])
-        generate_btn.click(KOKORO_TTS_API, inputs=[text, language_name, voice_name, speed,translate_text, remove_silence], outputs=[audio, audio_file,word_level_srt_file,srt_file,sentence_duration_file])
+        text.submit(NEXUS_TTS_API, inputs=[text, language_name, voice_name, speed,translate_text, remove_silence], outputs=[audio, audio_file,word_level_srt_file,srt_file,sentence_duration_file])
+        generate_btn.click(NEXUS_TTS_API, inputs=[text, language_name, voice_name, speed,translate_text, remove_silence], outputs=[audio, audio_file,word_level_srt_file,srt_file,sentence_duration_file])
 
         # Add examples to the interface
         gr.Examples(examples=dummy_examples, inputs=[text, language_name, voice_name])
@@ -619,7 +619,7 @@ def tutorial():
     - **"m_"**: Male
     """
     with gr.Blocks() as demo2:
-        # gr.Markdown("[Install on Your Local System](https://github.com/NeuralFalconYT/kokoro_v1)")
+        # gr.Markdown("[Install on Your Local System](https://github.com/NeuralFalconYT/nexus_tts)")
         gr.Markdown(explanation)  # Display the explanation
     return demo2
 
@@ -871,7 +871,7 @@ class SRTDubbing:
     #     if default_speed_factor is None:
     #         default_speed_factor = 1.0
 
-    #     # Step 1: Generate clean TTS audio at 1.0x speed (avoid Kokoro noise issue)
+    #     # Step 1: Generate clean TTS audio at 1.0x speed (avoid NEXUS noise issue)
     #     path, _ = generate_and_save_audio(text, Language=language, voice=voice, speed=1.0, remove_silence=False, keep_silence_up_to=0.05)
 
     #     # Step 2: Always adjust the generated TTS to user's speaking speed
@@ -923,7 +923,7 @@ class SRTDubbing:
         if default_speed_factor is None:
             default_speed_factor = 1.0
 
-        # Step 1: Generate clean TTS audio (Kokoro safe speed)
+        # Step 1: Generate clean TTS audio (NEXUS safe speed)
         path, _ = generate_and_save_audio(
             text, Language=language, voice=voice,
             speed=1.0, remove_silence=False, keep_silence_up_to=0.05
@@ -1093,7 +1093,7 @@ def main(debug, share):
     demo1 = ui()
     demo2 = subtitle_ui()
     demo3 = tutorial()
-    demo = gr.TabbedInterface([demo1, demo2,demo3],["Multilingual TTS","SRT Dubbing","VoicePack Explanation"],title="Kokoro TTS")#,theme='JohnSmith9982/small_and_pretty')
+    demo = gr.TabbedInterface([demo1, demo2,demo3],["Multilingual TTS","SRT Dubbing","VoicePack Explanation"],title="NEXUS TTS")#,theme='JohnSmith9982/small_and_pretty')
     demo.queue().launch(debug=debug, share=share)
     # demo.queue().launch(debug=debug, share=share,server_port=9000)
     #Run on local network

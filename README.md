@@ -1,10 +1,4 @@
-# Kokoro TTS V1.0 with Subtitle & SRT Dubbing
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NeuralFalconYT/Kokoro-TTS-Subtitle/blob/main/Kokoro_82M_v1_0.ipynb) <br>
-[![HuggingFace Space Demo](https://img.shields.io/badge/🤗-Space%20demo-yellow)](https://huggingface.co/spaces/NeuralFalcon/Kokoro-TTS-Subtitle)
-
-Alternative ways to use Kokoro-TTS [kokoro-onnx](https://github.com/thewh1teagle/kokoro-onnx), [Kokoro-FastAPI](https://github.com/remsky/Kokoro-FastAPI), [kokoro](https://github.com/hexgrad/kokoro)
-
+# NEXUS TTS V1.0 with Subtitle & SRT Dubbing
 
 ![app](https://github.com/user-attachments/assets/a33decd0-6e60-4fda-aceb-9bd4485b8ca9)
 
@@ -21,8 +15,8 @@ Alternative ways to use Kokoro-TTS [kokoro-onnx](https://github.com/thewh1teagle
 
 1. **Clone the Repository**
    ```sh
-   https://github.com/NeuralFalconYT/Kokoro-TTS-Subtitle.git
-   cd Kokoro-TTS-Subtitle
+   git clone <repository-url>
+   cd NEXUS-TTS
    ```
 
 2. **(Optional) Create and Activate a Virtual Environment**
@@ -103,16 +97,16 @@ Alternative ways to use Kokoro-TTS [kokoro-onnx](https://github.com/thewh1teagle
    Then, double-click on `run_app.bat` (Windows) to execute the script.
 <br>
 
-6. **Use Kokoko TTS Gradio app as an API in your other project:**  
+6. **Use NEXUS TTS Gradio app as an API in your other project:**  
    Check out ```scripts/api.py``` Code
 
-###### Uninstallation Guide for Kokoro v1.0
+###### Uninstallation Guide for NEXUS TTS v1.0
 
 ##### If You Used a Virtual Environment:
-1. Simply delete the `kokoro_v1` folder from your project directory.
+1. Simply delete the `nexus_tts` folder from your project directory.
 
 ##### If You Did Not Use a Virtual Environment:
-1. Inside the `kokoro_v1` directory, run the following command to uninstall dependencies:
+1. Inside the `nexus_tts` directory, run the following command to uninstall dependencies:
    ```bash
    pip uninstall -r requirements.txt
    ```
@@ -159,6 +153,7 @@ Note: This solution is likely to work, the same issue has been observed on both 
 
 
 ## License
-[Kokoro model](https://huggingface.co/hexgrad/Kokoro-82M) is licensed under the [Apache License 2.0]
+This project is licensed under the [Apache License 2.0]
+
 ## Credits
-[Kokoro HuggingFace](https://huggingface.co/hexgrad/Kokoro-82M)
+NEXUS TTS - Powered by Kokoro TTS Engine

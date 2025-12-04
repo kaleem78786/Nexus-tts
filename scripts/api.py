@@ -26,7 +26,7 @@ def text_to_speech(
 		speed=speed,
 		translate_text=auto_translate,
 		remove_silence=remove_silence,
-		api_name="/KOKORO_TTS_API"
+		api_name="/NEXUS_TTS_API"
     )
 
     print(f"API Response: {result}")  # Debugging output
