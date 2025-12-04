@@ -1171,12 +1171,9 @@ def main(debug, share):
     demo1 = ui()
     demo2 = subtitle_ui()
     demo3 = tutorial()
-    custom_css = """.gradio-container { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; }"""
     demo = gr.TabbedInterface([demo1, demo2,demo3],
                               ["Multilingual TTS","SRT Dubbing","VoicePack Explanation"],
-                              title="NEXUS TTS",
-                              theme=gr.themes.Soft(),
-                              css=custom_css)
+                              title="NEXUS TTS")
     demo.queue().launch(debug=debug, share=share)
     # demo.queue().launch(debug=debug, share=share,server_port=9000)
     #Run on local network
