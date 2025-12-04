@@ -1177,10 +1177,14 @@ def main(debug, share):
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2495768859443399" crossorigin="anonymous"></script>
     '''
     
-    demo = gr.TabbedInterface([demo1, demo2,demo3],
+    tabbed = gr.TabbedInterface([demo1, demo2,demo3],
                               ["Multilingual TTS","SRT Dubbing","VoicePack Explanation"],
-                              title="NEXUS TTS",
-                              head=adsense_head)
+                              title="NEXUS TTS")
+    
+    # Wrap in Blocks to add AdSense head
+    with gr.Blocks(head=adsense_head, title="NEXUS TTS") as demo:
+        tabbed.render()
+    
     demo.queue().launch(debug=debug, share=share)
     # demo.queue().launch(debug=debug, share=share,server_port=9000)
     #Run on local network
