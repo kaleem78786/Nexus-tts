@@ -1172,20 +1172,24 @@ def main(debug, share):
     demo2 = subtitle_ui()
     demo3 = tutorial()
     
-    # Google AdSense script
-    adsense_head = '''
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2495768859443399" crossorigin="anonymous"></script>
+    # Google AdSense injection via JavaScript
+    adsense_js = '''
+    function loadAdSense() {
+        if (!document.querySelector('script[src*="pagead2.googlesyndication.com"]')) {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2495768859443399';
+            script.crossOrigin = 'anonymous';
+            document.head.appendChild(script);
+        }
+    }
+    loadAdSense();
     '''
     
-    tabbed = gr.TabbedInterface([demo1, demo2,demo3],
+    demo = gr.TabbedInterface([demo1, demo2,demo3],
                               ["Multilingual TTS","SRT Dubbing","VoicePack Explanation"],
                               title="NEXUS TTS")
-    
-    # Wrap in Blocks to add AdSense head
-    with gr.Blocks(head=adsense_head, title="NEXUS TTS") as demo:
-        tabbed.render()
-    
-    demo.queue().launch(debug=debug, share=share)
+    demo.queue().launch(debug=debug, share=share, js=adsense_js)
     # demo.queue().launch(debug=debug, share=share,server_port=9000)
     #Run on local network
     # laptop_ip="192.168.0.30"
